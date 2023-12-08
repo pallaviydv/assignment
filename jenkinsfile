@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    environment{
+        name = "pallavi"
+    }
+    parameters{
+        string(name:"nitin" , defaultValue: "ansh" , description: "who are you?")
+        booleanParam(name:"male" , defaultValue: true , description: "gender?")
+        choice(name:"city" , choices: ['noida','gurgaon','agra'] , description: "gender?")
+    }
+    stages {
+        stage('run as a command') {
+            steps {
+               bat 'dir'
+               
+            }
+        }
+        stage('env-var') {
+            steps {
+                bat ' echo %BUILD_ID% '
+            }
+        }
+        stage('continue ?') {
+            input {
+                message "should we continue ?"
+                ok "yes we should !"    
+            }
+            steps {
+                echo "okk"
+            }
+        }
+        stage('name') {
+            steps {
+                bat ' echo %name% '
+                bat ' echo %dept% '
+            }
+        }
+        stage('dept') {
+             environment{
+                dept = "devops"
+            }    
+            steps {
+                bat ' echo %dept% '
+            }
+        }
+        stage('parameter') {
+            steps {
+                bat ' echo %nitin% '  
+                bat ' echo %male% '
+                bat ' echo %city% '
+            }
+            
+        
+        }
+    }
+        post{
+            always{
+                echo "always"
+            }
+            failure{
+                echo "fail"
+            }
+            success{
+                echo "success"
+            }
+        
+        
+        }
+    }

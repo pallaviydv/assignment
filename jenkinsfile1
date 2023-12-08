@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('p') {
+            steps {
+                bat 'pallavi'
+            }
+        }
+        stage('pp') {
+            steps {
+               input 'what is my name'
+            }
+        }
+    }
+}

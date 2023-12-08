@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('p') {
             steps {
-                bat 'pallavi'
+                bat 'echo pallavi'
             }
         }
         stage('pp') {
